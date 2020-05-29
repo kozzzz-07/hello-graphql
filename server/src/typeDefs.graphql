@@ -1,0 +1,104 @@
+enum Search {
+  AND
+  OR
+}
+
+type Query {
+  """
+  Hello World.
+  """
+  hello: String
+  """
+  ポケモンの一覧
+  """
+  allPokemon(
+    no: ID
+    """
+    `ノーマル` `ほのお` `みず` `くさ` `でんき` `こおり` `かくとう` `どく` `じめん`
+    `ひこう` `エスパー` `むし` `いわ` `ゴースト` `ドラゴン` `あく` `はがね` `フェアリー`
+    """
+    types: [String!]
+    abilities: [String!]
+    hiddenAbilities: [String!]
+    # AND/OR 検索条件
+    # `types` `abilities` `hiddenAbilities` に対して有効。
+    # 個別に指定することはできない。
+    search: Search = AND
+  ): [Pokemon!]!
+}
+
+"""
+各種族値
+"""
+type Stats {
+  """
+  HP
+  """
+  hp: Int
+  """
+  こうげき
+  """
+  attack: Int
+  """
+  ぼうぎょ
+  """
+  defence: Int
+  """
+  とくこう
+  """
+  spAttack: Int
+  """
+  とくぼう
+  """
+  spDefence: Int
+  """
+  すばやさ
+  """
+  speed: Int
+}
+
+"""
+ポケモン
+"""
+type Pokemon {
+  """
+  図鑑番号
+  """
+  no: ID!
+  """
+  名前
+  """
+  name: String
+  """
+  フォーム名
+  """
+  form: String
+  """
+  メガ進化可能
+  """
+  isMegaEvolution: Boolean
+  """
+  進化先の図鑑番号
+  """
+  evolutions: [Int!]!
+  """
+  タイプ
+  """
+  types: [String!]!
+  """
+  特性
+  """
+  abilities: [String!]!
+  """
+  隠れ特性
+  """
+  hiddenAbilities: [String!]!
+  """
+  種族値
+  """
+  baseStats: Int
+  """
+  名前
+  """
+  stats: Stats
+}
