@@ -102,3 +102,10 @@ type Pokemon {
   """
   stats: Stats
 }
+
+type Mutation {
+  """
+  任意の文字列を指定可能
+  """
+  hello(helloInput: String): String
+}

@@ -1,10 +1,14 @@
+import { hello, Hello } from '../data/hello';
+
 import pokemonData, {
   FilterConditions,
   FilterConditionsKey,
 } from '../data/pokemon-data';
 
 export default {
-  hello: () => 'Hello world!',
+  hello: (): Hello => {
+    return hello;
+  },
   allPokemon: (parent: unknown, { search, ...args }: FilterConditions) => {
     const keys = Object.keys(args) as FilterConditionsKey[];
 

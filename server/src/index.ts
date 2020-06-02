@@ -3,10 +3,10 @@ import expressPlayground from 'graphql-playground-middleware-express';
 import * as express from 'express';
 import * as cors from 'cors';
 import { readFileSync } from 'fs';
-import { Query, Type } from './resolvers/';
+import { Query, Mutation, Type } from './resolvers/';
 
 try {
-  const resolvers = { Query, ...Type };
+  const resolvers = { Query, Mutation, ...Type };
   const typeDefs = readFileSync('./src/typeDefs.graphql', 'utf-8');
   const server = new ApolloServer({
     typeDefs,
