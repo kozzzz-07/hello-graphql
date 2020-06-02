@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
+    "build:dev": "npx webpack --mode=development",
+    "build:prod": "npx webpack --mode=production",
+    "gae-deploy": "gcloud app deploy",
     "gcp-build": "npx webpack --mode=production",
     "start": "node ./dist/app.js",
-    "build-dev": "npx webpack --mode=development",
-    "build-prod": "npx webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
