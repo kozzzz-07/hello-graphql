@@ -33,10 +33,12 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "apollo-link-ws": "^1.0.20",
     "apollo-server-express": "^2.14.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql": "^15.0.0",
-    "graphql-playground-middleware-express": "^1.7.15"
+    "graphql-playground-middleware-express": "^1.7.15",
+    "subscriptions-transport-ws": "^0.9.16"
   }
 }

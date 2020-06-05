@@ -8,6 +8,7 @@ type Query {
   Hello World.
   """
   hello: String
+  comments: [Comment!]!
   """
   ポケモンの一覧
   """
@@ -107,5 +108,18 @@ type Mutation {
   """
   任意の文字列を指定可能
   """
-  hello(helloInput: String): String
+  hello(helloInput: String!): String
+  """
+  任意のコメントを指定可能
+  """
+  postComment(content: String!): Comment
+}
+
+type Comment {
+  id: String
+  content: String
+}
+
+type Subscription {
+  commentAdded: Comment
 }
