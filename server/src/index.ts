@@ -27,7 +27,6 @@ try {
     },
   });
   const app = express();
-
   const PORT = process.env.PORT || 8080;
 
   app.use(cors());
@@ -43,11 +42,6 @@ try {
       subscriptionEndpoint: `/subscription`,
     }),
   );
-
-  const schema = makeExecutableSchema({
-    typeDefs,
-    resolvers,
-  });
 
   httpServer.listen(PORT, () => {
     console.log(`GraphQL Service running @ :${PORT}${server.graphqlPath}`);
