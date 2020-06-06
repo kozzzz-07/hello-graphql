@@ -22,6 +22,7 @@
     "@typescript-eslint/parser": "^3.0.2",
     "eslint": "^7.1.0",
     "eslint-plugin-prettier": "^3.1.3",
+    "npm-check-updates": "^6.0.1",
     "prettier": "^2.0.5",
     "ts-loader": "^7.0.5",
     "ts-node": "^8.10.2",
@@ -33,8 +34,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "apollo-link-ws": "^1.0.20",
-    "apollo-server-express": "^2.14.1",
+    "apollo-server-express": "^2.14.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql": "^15.0.0",

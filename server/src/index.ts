@@ -23,32 +23,37 @@ try {
     introspection: true,
     uploads: false,
     debug: true,
+    subscriptions: {
+      path: `/subscription`,
+      keepAlive: 10000,
+    },
   });
   const app = express();
 
   const PORT = process.env.PORT || 8080;
 
   app.use(cors());
-
-  // bodyParserを有効
-  // app.use(express.json());
-  // app.use(express.urlencoded({ extended: true }));
-
   server.applyMiddleware({ app });
 
-  app.use('*', cors({ origin: `http://localhost:${PORT}` }));
+  const httpServer = createServer(app);
+  server.installSubscriptionHandlers(httpServer);
 
   app.get(
     `/playground`,
     expressPlayground({
       endpoint: `/graphql`,
-      // subscriptionEndpoint: `/graphql`,
+      subscriptionEndpoint: `/subscription`,
     }),
   );
-  app.get(`/*`, (req, res) => res.redirect('/playground'));
 
-  const httpServer = createServer(app);
-  server.installSubscriptionHandlers(httpServer);
+  // よくわかっていない
+  // app.use(
+  //   `/graphql`,
+  //   expressPlayground({
+  //     endpoint: `/graphql`,
+  //     subscriptionEndpoint: `/subscription`,
+  //   }),
+  // );
 
   const schema = makeExecutableSchema({
     typeDefs,
@@ -60,7 +65,7 @@ try {
     console.log(`Subscriptions ready at @ :${PORT}${server.subscriptionsPath}`);
 
     // Set up the WebSocket for handling GraphQL subscriptions
-    const hoge = SubscriptionServer.create(
+    SubscriptionServer.create(
       {
         execute,
         subscribe,
@@ -68,7 +73,7 @@ try {
       },
       {
         server: httpServer,
-        path: '/graphql',
+        path: '/subscription',
         noServer: true,
       },
     );
