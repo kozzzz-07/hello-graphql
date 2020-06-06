@@ -4,9 +4,7 @@ import * as express from 'express';
 import * as cors from 'cors';
 import { createServer } from 'http';
 import { readFileSync } from 'fs';
-import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { Query, Mutation, Subscription, Type } from './resolvers/';
-import { execute, subscribe } from 'graphql';
 import { makeExecutableSchema } from 'graphql-tools';
 
 try {
@@ -46,15 +44,6 @@ try {
     }),
   );
 
-  // よくわかっていない
-  // app.use(
-  //   `/graphql`,
-  //   expressPlayground({
-  //     endpoint: `/graphql`,
-  //     subscriptionEndpoint: `/subscription`,
-  //   }),
-  // );
-
   const schema = makeExecutableSchema({
     typeDefs,
     resolvers,
@@ -63,20 +52,6 @@ try {
   httpServer.listen(PORT, () => {
     console.log(`GraphQL Service running @ :${PORT}${server.graphqlPath}`);
     console.log(`Subscriptions ready at @ :${PORT}${server.subscriptionsPath}`);
-
-    // Set up the WebSocket for handling GraphQL subscriptions
-    SubscriptionServer.create(
-      {
-        execute,
-        subscribe,
-        schema,
-      },
-      {
-        server: httpServer,
-        path: '/subscription',
-        noServer: true,
-      },
-    );
   });
 } catch (error) {
   console.error(error);
