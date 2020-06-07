@@ -42,6 +42,7 @@ try {
       subscriptionEndpoint: `/subscription`,
     }),
   );
+  app.get(`/*`, (req, res) => res.redirect('/playground'));
 
   httpServer.listen(PORT, () => {
     console.log(`GraphQL Service running @ :${PORT}${server.graphqlPath}`);
