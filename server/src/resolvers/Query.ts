@@ -4,12 +4,16 @@ import pokemonData, {
   FilterConditions,
   FilterConditionsKey,
 } from '../data/pokemon-data';
+import { getComments, Comment } from '../data/comment';
 
 export default {
   hello: (): Hello => {
     return hello;
   },
-  allPokemon: (parent: unknown, { search, ...args }: FilterConditions) => {
+  comments: (): Comment[] => {
+    return getComments();
+  },
+  allPokemon: (root: unknown, { search, ...args }: FilterConditions) => {
     const keys = Object.keys(args) as FilterConditionsKey[];
 
     const filteredPokemonData = pokemonData.filter((pokemon) =>
