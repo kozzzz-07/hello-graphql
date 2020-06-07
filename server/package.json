@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "12.13.0"
+  },
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
     "build:dev": "npx webpack --mode=development",
     "build:prod": "npx webpack --mode=production",
     "gae-deploy": "gcloud app deploy",
+    "gae-deploy:flex": "gcloud app deploy app.flexible.yaml",
     "gcp-build": "npx webpack --mode=production",
     "start": "node ./dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -38,7 +42,6 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql": "^15.0.0",
-    "graphql-playground-middleware-express": "^1.7.15",
-    "subscriptions-transport-ws": "^0.9.16"
+    "graphql-playground-middleware-express": "^1.7.15"
   }
 }
