@@ -14,6 +14,7 @@ export interface FilterConditions {
   abilities?: string[];
   hiddenAbilities?: string[];
   search: 'AND' | 'OR';
+  limit?: number;
 }
 
 export interface Pokemon {
