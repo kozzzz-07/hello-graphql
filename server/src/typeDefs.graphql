@@ -3,6 +3,8 @@ enum Search {
   OR
 }
 
+scalar Date
+
 type Query {
   """
   Hello World.
@@ -21,10 +23,17 @@ type Query {
     types: [String!]
     abilities: [String!]
     hiddenAbilities: [String!]
-    # AND/OR 検索条件
-    # `types` `abilities` `hiddenAbilities` に対して有効。
-    # 個別に指定することはできない。
+    """
+    AND/OR 検索条件
+    `types` `abilities` `hiddenAbilities` に対して有効。
+    個別に指定することはできない。
+    """
     search: Search = AND
+    """
+    取得数
+    デフォルト値 `1000`
+    """
+    limit: Int = 1000
   ): [Pokemon!]!
 }
 
@@ -112,12 +121,14 @@ type Mutation {
   """
   任意のコメントを指定可能
   """
-  postComment(content: String!): Comment
+  postComment(name: String, content: String!): Comment
 }
 
 type Comment {
   id: String
+  name: String
   content: String
+  createAt: Date
 }
 
 type Subscription {
