@@ -3,6 +3,8 @@ enum Search {
   OR
 }
 
+scalar Date
+
 type Query {
   """
   Hello World.
@@ -119,12 +121,14 @@ type Mutation {
   """
   任意のコメントを指定可能
   """
-  postComment(content: String!): Comment
+  postComment(name: String, content: String!): Comment
 }
 
 type Comment {
   id: String
+  name: String
   content: String
+  createAt: Date
 }
 
 type Subscription {

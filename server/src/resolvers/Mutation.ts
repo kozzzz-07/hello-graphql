@@ -1,5 +1,10 @@
 import { modHello, Hello, HelloInput } from '../data/hello';
-import { postComment, COMMENT_TRIGGER, getComments } from '../data/comment';
+import {
+  postComment,
+  COMMENT_TRIGGER,
+  getComments,
+  PostComment,
+} from '../data/comment';
 import { PubSub } from 'apollo-server-express';
 
 export default {
@@ -8,11 +13,11 @@ export default {
   },
   postComment: (
     parent: unknown,
-    { content }: { content: string },
+    { name = 'no name', content }: PostComment,
     { pubSub }: { pubSub: PubSub },
   ) => {
-    const comment = postComment(content);
-    const comments = getComments();
+    const comment = postComment({ name, content });
+    // const comments = getComments();
     pubSub.publish(COMMENT_TRIGGER, { commentAdded: comment });
     return comment;
   },
