@@ -1,5 +1,5 @@
 import { Pokemon } from '../data/pokemon-data';
-import { GraphQLScalarType } from 'graphql';
+import { GraphQLScalarType, IntValueNode } from 'graphql';
 
 export default {
   Pokemon: {
@@ -11,6 +11,6 @@ export default {
     description: 'A valid date value.',
     parseValue: (value) => new Date(value),
     serialize: (value) => new Date(value).toISOString(),
-    parseLiteral: (ast) => ast.value,
+    parseLiteral: (ast: IntValueNode) => ast.value,
   }),
 };
