@@ -8,17 +8,18 @@ import { GraphQLModule } from './modules/graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HelloWorldComponent } from './hello-world/hello-world.component';
 import { MaterialModule } from './modules/material.module';
-import { SideNavComponent } from './shared/side-nav/side-nav.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, HelloWorldComponent, SideNavComponent],
+  declarations: [AppComponent, HelloWorldComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     GraphQLModule,
     HttpClientModule,
-    MaterialModule,
+    // MaterialModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,16 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TopComponent } from './top/top.component';
+import { HelloWorldComponent } from './hello-world.component';
 
 const routes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: '',
-        component: TopComponent,
-      },
-    ],
+    component: HelloWorldComponent,
   },
 ];
 
@@ -18,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ChatRoutingModule {}
+export class HelloWorldRoutingModule {}

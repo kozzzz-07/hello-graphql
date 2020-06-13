@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HelloWorldComponent } from './hello-world/hello-world.component';
-import { TopComponent } from './chat/top/top.component';
+import { NavComponent } from './shared/components/nav/nav.component';
 
 const routes: Routes = [
-  { path: 'hello-world', component: HelloWorldComponent },
-  { path: 'chat', component: TopComponent },
+  {
+    path: 'hello-world',
+    component: NavComponent,
+    loadChildren: () =>
+      import('./hello-world/hello-world.module').then(m => m.HelloWorldModule),
+  },
+  {
+    path: 'chat',
+    component: NavComponent,
+    loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule),
+  },
 ];
 
 @NgModule({
