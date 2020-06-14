@@ -9,7 +9,7 @@
   >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/hello-world">top</a>
+      <a mat-list-item routerLink="/hello-world">HelloWorld!(疎通確認)</a>
       <a mat-list-item routerLink="/chat">chat</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -20,11 +20,10 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>angular</span>
+      <span>GraphQLのクライアントアプリ</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

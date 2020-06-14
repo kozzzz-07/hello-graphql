@@ -2,15 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ChatRoutingModule } from './chat-routing.module';
-import { TopComponent } from './top/top.component';
-import { RoomComponent } from './room/room.component';
-
+import { TopComponent } from './components/top/top.component';
+import { RoomComponent } from './components/room/room.component';
 
 @NgModule({
   declarations: [TopComponent, RoomComponent],
-  imports: [
-    CommonModule,
-    ChatRoutingModule
-  ]
+  imports: [CommonModule, ChatRoutingModule],
 })
-export class ChatModule { }
+export class ChatModule {}
