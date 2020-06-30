@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphQLModule } from './modules/graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HelloWorldComponent } from './hello-world/hello-world.component';
-import { MaterialModule } from './modules/material.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     GraphQLModule,
     HttpClientModule,
-    // MaterialModule,
     SharedModule,
   ],
   providers: [],

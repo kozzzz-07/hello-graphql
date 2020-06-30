@@ -4,15 +4,23 @@ import { NavComponent } from './shared/components/nav/nav.component';
 
 const routes: Routes = [
   {
-    path: 'hello-world',
+    path: '',
     component: NavComponent,
-    loadChildren: () =>
-      import('./hello-world/hello-world.module').then(m => m.HelloWorldModule),
-  },
-  {
-    path: 'chat',
-    component: NavComponent,
-    loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule),
+    children: [
+      { path: '', redirectTo: '/chat', pathMatch: 'full' },
+      {
+        path: 'hello-world',
+        loadChildren: () =>
+          import('./hello-world/hello-world.module').then(
+            m => m.HelloWorldModule,
+          ),
+      },
+      {
+        path: 'chat',
+        loadChildren: () =>
+          import('./chat/chat.module').then(m => m.ChatModule),
+      },
+    ],
   },
 ];
 

@@ -4,7 +4,7 @@
 <div *ngIf="error">
   Error :(
 </div>
-<div *ngIf="hello">
+<div *ngIf="!loading">
   <p>疎通OK</p>
   <p>{{ hello }}</p>
   <input #helloInput type="text" /><button (click)="onClick(helloInput.value)">
