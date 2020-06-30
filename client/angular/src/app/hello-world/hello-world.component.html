@@ -1,0 +1,30 @@
+<div *ngIf="loading">
+  Loading...
+</div>
+<div *ngIf="error">
+  Error :(
+</div>
+<div *ngIf="!loading">
+  <p>疎通OK</p>
+  <p>{{ hello }}</p>
+  <input #helloInput type="text" /><button (click)="onClick(helloInput.value)">
+    変更
+  </button>
+
+  <div>ポケモン</div>
+  <ul>
+    <li *ngFor="let pokemon of pokemons">
+      名前； {{ pokemon.name }} タイプ：{{ pokemon.types }}
+    </li>
+  </ul>
+
+  <div>コメント</div>
+  <input #comment type="text" /><button (click)="onClickComment(comment.value)">
+    コメントする
+  </button>
+  <ul>
+    <li *ngFor="let comment of comments">
+      {{ comment }}
+    </li>
+  </ul>
+</div>

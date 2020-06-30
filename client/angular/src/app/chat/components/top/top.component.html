@@ -1,0 +1,16 @@
+<div class="container">
+  <form class="formGroup" class="item">
+    <mat-form-field class="name">
+      <mat-label>ニックネーム</mat-label>
+      <input matInput placeholder="" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['room']"
+      [state]="{ name: name }"
+    >
+      入室
+    </button>
+  </form>
+</div>

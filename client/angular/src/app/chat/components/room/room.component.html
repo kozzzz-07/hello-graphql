@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="chatArea">
+    <mat-list *ngFor="let comment of comments">
+      <app-comment
+        [name]="comment.name"
+        [date]="comment.createAt"
+        [content]="comment.content"
+      ></app-comment>
+    </mat-list>
+  </div>
+
+  <div class="commentEntryArea">
+    <form class="formGroup">
+      <mat-form-field class="content">
+        <mat-label>メッセージ</mat-label>
+        <input matInput placeholder="" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="entry">
+        入力
+      </button>
+    </form>
+  </div>
+</div>
