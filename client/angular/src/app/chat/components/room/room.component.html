@@ -13,9 +13,14 @@
     <form class="formGroup">
       <mat-form-field class="content">
         <mat-label>メッセージ</mat-label>
-        <input matInput placeholder="" />
+        <input matInput placeholder="" [(ngModel)]="message" name="message" />
       </mat-form-field>
-      <button mat-raised-button color="primary" class="entry">
+      <button
+        mat-raised-button
+        color="primary"
+        class="entry"
+        (click)="onClickEntry(message)"
+      >
         入力
       </button>
     </form>

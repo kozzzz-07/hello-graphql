@@ -11,6 +11,7 @@ const routes: Routes = [
         path: '',
         component: TopComponent,
       },
+      // TODO: 直接繊維できないようにガード
       {
         path: 'room',
         component: RoomComponent,

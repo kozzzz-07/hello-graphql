@@ -1,14 +1,14 @@
 <div class="container">
-  <form class="formGroup" class="item">
-    <mat-form-field class="name">
+  <form class="item">
+    <mat-form-field>
       <mat-label>ニックネーム</mat-label>
-      <input matInput placeholder="" />
+      <input matInput placeholder="" [(ngModel)]="name" name="name" />
     </mat-form-field>
     <button
       mat-raised-button
       color="primary"
-      [routerLink]="['room']"
       [state]="{ name: name }"
+      [routerLink]="['room']"
     >
       入室
     </button>
