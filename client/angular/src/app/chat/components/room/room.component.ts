@@ -24,14 +24,6 @@ export class RoomComponent implements OnInit, OnDestroy {
   comments: Comment[] = [];
 
   constructor(private router: Router, private apollo: Apollo) {
-    // this.router.events
-    //   .pipe(filter(e => e instanceof NavigationStart))
-    //   .subscribe(e => {
-    //     const navigation = this.router.getCurrentNavigation();
-    //     this.name = navigation?.extras?.state?.name || '';
-    //     console.log({ navigation });
-    //   });
-
     const navigation = this.router.getCurrentNavigation();
     this.name = navigation?.extras?.state?.name || '';
   }
@@ -45,6 +37,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.subscribeComment();
   }
 
+  // TODO: 問い合わせ系はサービスに寄せる
   private fetchComment() {
     this.subscription.add(
       this.apollo
