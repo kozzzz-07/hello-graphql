@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUri: 'http://XXXX',
+  wsUri: 'ws://XXXX',
 };

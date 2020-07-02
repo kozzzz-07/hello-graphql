@@ -1,48 +1,25 @@
 import { NgModule } from '@angular/core';
-import { ApolloModule, APOLLO_OPTIONS, Apollo } from 'apollo-angular';
+import { ApolloModule, Apollo } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
-
-// const uri = 'http://localhost:8080/graphql'; // <-- add the URL of the GraphQL server here
-
-// const wsClient = new WebSocketLink({
-//   uri: `ws://localhost:8080/graphql`,
-//   options: {
-//     reconnect: true,
-//   },
-// });
-
-// export function createApollo(httpLink: HttpLink) {
-//   console.log(httpLink);
-//   return {
-//     link: httpLink.create({ uri }),
-//     cache: new InMemoryCache(),
-//   };
-// }
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   exports: [ApolloModule, HttpLinkModule],
-  // providers: [
-  //   {
-  //     provide: APOLLO_OPTIONS,
-  //     useFactory: createApollo,
-  //     deps: [HttpLink],
-  //   },
-  // ],
 })
 export class GraphQLModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
     // Create an http link:
     const http = httpLink.create({
-      uri: 'http://localhost:8080/graphql',
+      uri: `${environment.apiUri}/graphql`,
     });
 
     // Create a WebSocket link:
     const ws = new WebSocketLink({
-      uri: `ws://localhost:8080/subscription`,
+      uri: `${environment.wsUri}/subscription`,
       options: {
         reconnect: true,
       },

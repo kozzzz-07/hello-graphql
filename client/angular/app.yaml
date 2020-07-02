@@ -1,2 +1,2 @@
 runtime: nodejs12
-service: gql-api
+service: client
