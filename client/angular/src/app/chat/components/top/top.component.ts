@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top.component.scss'],
 })
 export class TopComponent implements OnInit {
-  name = 'hoge';
+  name = '';
 
   constructor() {}
 
