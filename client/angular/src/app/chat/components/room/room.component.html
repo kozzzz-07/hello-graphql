@@ -3,7 +3,7 @@
     <mat-list *ngFor="let comment of comments">
       <app-comment
         [name]="comment.name"
-        [date]="comment.createAt"
+        [createAt]="comment.createAt"
         [content]="comment.content"
       ></app-comment>
     </mat-list>

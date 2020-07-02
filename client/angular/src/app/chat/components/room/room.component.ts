@@ -1,16 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { Apollo } from 'apollo-angular';
-import {
-  COMMENTS_SUBSCRIPTION,
-  COMMENT_POST,
-  COMMENTS_QUERY,
-  CommentQuery,
-  Comment,
-} from '../../shared/gql';
+import { Router } from '@angular/router';
+import { CommentQuery, Comment } from '../../shared/gql';
 import { ApolloQueryResult } from 'apollo-client';
 import { Subscription } from 'rxjs';
+import { RoomService } from '../../services/room.service';
 
 @Component({
   selector: 'app-room',
@@ -23,7 +16,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
   comments: Comment[] = [];
 
-  constructor(private router: Router, private apollo: Apollo) {
+  constructor(private router: Router, private roomService: RoomService) {
     const navigation = this.router.getCurrentNavigation();
     this.name = navigation?.extras?.state?.name || '';
   }
@@ -33,18 +26,15 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.fetchComment();
-    this.subscribeComment();
+    this.fetchComments();
+    this.subscribeComments();
   }
 
-  // TODO: 問い合わせ系はサービスに寄せる
-  private fetchComment() {
+  private fetchComments() {
     this.subscription.add(
-      this.apollo
-        .watchQuery<any>({
-          query: COMMENTS_QUERY,
-        })
-        .valueChanges.subscribe((result: ApolloQueryResult<CommentQuery>) => {
+      this.roomService
+        .fetchComments()
+        .subscribe((result: ApolloQueryResult<CommentQuery>) => {
           console.log(result);
           this.comments = [...result.data.comments];
         }),
@@ -56,46 +46,31 @@ export class RoomComponent implements OnInit, OnDestroy {
       return;
     }
 
-    console.log(this.name);
-
     this.subscription.add(
-      this.apollo
-        .mutate<any>({
-          mutation: COMMENT_POST,
-          variables: {
-            name: this.name,
-            content: message,
-          },
-        })
-        .subscribe(
-          ({ data }) => {
-            console.log('got data', data);
-          },
-          error => {
-            console.error('there was an error sending the query', error);
-          },
-        ),
+      this.roomService.postComment(this.name, message).subscribe(
+        ({ data }) => {
+          console.log('got data', data);
+        },
+        error => {
+          console.error('there was an error sending the query', error);
+        },
+      ),
     );
 
     this.message = '';
   }
 
-  private subscribeComment() {
+  private subscribeComments() {
     this.subscription.add(
-      this.apollo
-        .subscribe<any>({
-          query: COMMENTS_SUBSCRIPTION,
-          fetchPolicy: 'no-cache',
-        })
-        .subscribe(
-          (result: ApolloQueryResult<any>) => {
-            console.log(result);
-            this.comments.push(result.data.commentAdded);
-          },
-          (error: any) => {
-            console.error(error);
-          },
-        ),
+      this.roomService.subscribeComments().subscribe(
+        (result: ApolloQueryResult<any>) => {
+          console.log(result);
+          this.comments.push(result.data.commentAdded);
+        },
+        (error: any) => {
+          console.error(error);
+        },
+      ),
     );
   }
 }
