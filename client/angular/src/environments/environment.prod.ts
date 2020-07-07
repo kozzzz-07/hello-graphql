@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
-  apiUri: 'http://XXXX',
-  wsUri: 'ws://XXXX',
+  httpProtocol: 'https:',
+  domain: '//xxxx',
+  wsUri: 'wss://xxxx',
 };

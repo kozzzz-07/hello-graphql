@@ -8,4 +8,8 @@
   // "files": ["src/@types/graphql.d.ts"],
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
+  // "extends": ["tslint-plugin-prettier"],
+  // "rules": {
+  //   "prettier": true
+  // }
 }

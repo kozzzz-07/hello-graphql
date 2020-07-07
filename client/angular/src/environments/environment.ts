@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  httpProtocol: 'http:',
+  domain: '//localhost:8080',
   apiUri: 'http://localhost:8080',
   wsUri: 'ws://localhost:8080',
 };

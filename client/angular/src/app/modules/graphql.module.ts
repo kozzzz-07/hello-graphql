@@ -14,7 +14,7 @@ export class GraphQLModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
     // Create an http link:
     const http = httpLink.create({
-      uri: `${environment.apiUri}/graphql`,
+      uri: `${environment.httpProtocol}${environment.domain}/graphql`,
     });
 
     // Create a WebSocket link:

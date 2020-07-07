@@ -1,2 +1,10 @@
 runtime: nodejs12
 service: client
+
+handlers:
+  - url: /
+    static_files: dist/angular/index.html
+    upload: dist/angular/index.html
+  - url: /(.*)
+    static_files: dist/angular/\1
+    upload: dist/angular/(.*)

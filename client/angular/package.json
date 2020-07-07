@@ -8,7 +8,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "gae-deploy": "gcloud app deploy",
+    "gae-deploy:no-cache": "gcloud beta app deploy --no-cache",
+    "gcp-build": "ng build --prod",
+    "build:gae": "ng build --prod"
   },
   "private": true,
   "dependencies": {
